@@ -1,5 +1,5 @@
 name: SynesthesiaSwitcher
-version: 1.0
+version: 1.1
 author: Rikitek4759
 main: services.synesthesia.synesthesia_switcher.Main
 api-version: 1.15

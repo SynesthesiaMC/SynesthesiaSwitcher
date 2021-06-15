@@ -1,5 +1,6 @@
 package services.synesthesia.synesthesia_switcher.events;
 
+import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
@@ -8,6 +9,9 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
+
+import com.github.sirblobman.combatlogx.api.ICombatLogX;
+import com.github.sirblobman.combatlogx.api.ICombatManager;
 
 import services.synesthesia.synesthesia_switcher.Main;
 import services.synesthesia.synesthesia_switcher.managers.CooldownManager;
@@ -41,8 +45,13 @@ public class SwitcherHitEvent implements Listener {
 		if (!(snowball.getShooter() instanceof Player)) {
 			return;
 		}
-		
+
 		Player shooter = (Player) snowball.getShooter();
+
+		if (this.plugin.getCombatLogX() && (this.isInCombat(shooter) || this.isInCombat(hit))) {
+			return;
+		}
+
 		if (!this.manager.isOnCooldown(shooter.getUniqueId())) {
 			this.manager.setOnCooldown(shooter.getUniqueId(), System.currentTimeMillis());
 			Location ploc = shooter.getLocation();
@@ -51,5 +60,12 @@ public class SwitcherHitEvent implements Listener {
 			hit.teleport(ploc);
 		}
 
+	}
+
+	private boolean isInCombat(Player player) {
+		// You need to ensure that CombatLogX is enabled before using it for anything.
+		ICombatLogX plugin = (ICombatLogX) Bukkit.getPluginManager().getPlugin("CombatLogX");
+		ICombatManager combatManager = plugin.getCombatManager();
+		return combatManager.isInCombat(player);
 	}
 }

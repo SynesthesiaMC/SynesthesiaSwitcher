@@ -12,7 +12,7 @@ import services.synesthesia.synesthesia_switcher.managers.CooldownManager;
 
 public class Main extends JavaPlugin {
 
-	private boolean SaberFactions, SavageFactions, SupremeFactions, WorldGuard;
+	private boolean SaberFactions, SavageFactions, SupremeFactions, WorldGuard, CombatLogX;
 	private CooldownManager manager;
 	
 	@Override
@@ -44,6 +44,11 @@ public class Main extends JavaPlugin {
 			this.WorldGuard = true;
 		}
 		
+		if (this.getServer().getPluginManager().getPlugin("CombatLogX") != null) {
+			this.getLogger().info(" - Successfully Hooked into CombatLogX");
+			this.CombatLogX = true;
+		}
+		
 		this.saveDefaultConfig();
 		this.manager = new CooldownManager(this);
 		getServer().getPluginManager().registerEvents(new SwitcherHitEvent(this), this);
@@ -56,7 +61,7 @@ public class Main extends JavaPlugin {
 		this.getLogger().info(" - Loaded Switcher Hit Event");
 		this.getLogger().info(" - Loaded Cooldown Manager");
 		this.getLogger().info("");
-		this.getLogger().info("SynesthesiaSwitcher v1.0 has successfully loaded!");
+		this.getLogger().info("SynesthesiaSwitcher v1.1 has successfully loaded!");
 		final Date date2 = new Date();
 		final long endTime = date2.getTime();
 		this.getLogger().info("Plugin successfully loaded in " + (endTime - startTime) + "ms.");
@@ -87,6 +92,10 @@ public class Main extends JavaPlugin {
 	
 	public boolean getSupremeFactions() {
 		return this.SupremeFactions;
+	}
+	
+	public boolean getCombatLogX() {
+		return this.CombatLogX;
 	}
 
 }
