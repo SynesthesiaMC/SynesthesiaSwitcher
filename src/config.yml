@@ -1,0 +1,26 @@
+########################################################
+#         Synesthesia Switcher Configuration           #
+#                                                      #
+# By Rikitek4759                                       #
+#                                                      #
+# Made with love <3                                    #
+########################################################
+
+########################################################
+#               Switcher Configuration                 #
+########################################################
+SwitcherBall:
+  ItemName: '&dSwitcher &fBall'
+  ItemLore:
+    - '&5&l* &fThrow it at your enemy'
+    - '&5&l* &fTo &dswitch &fposition'
+  Cooldown: 60.0
+########################################################
+#               Messages Configuration                 #
+########################################################
+prefix: '&dSynesthesia &f>'
+
+Messages:
+  NoPermission: '%prefix% &fYou dont have permission'
+  OnCooldown: '%prefix% &fSwitcherball on cooldown'
+

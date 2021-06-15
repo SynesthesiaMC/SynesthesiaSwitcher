@@ -1,0 +1,9 @@
+name: SynesthesiaSwitcher
+version: 1.0
+author: Rikitek4759
+main: services.synesthesia.synesthesia_switcher.Main
+api-version: 1.15
+commands:
+  switcherball:
+    description: Comando Principale
+    usage: /<command>
